@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">E</div>
+          <h1>Expense Tracker</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="month-pill">October 2026</div>
+          <button class="ghost-btn" id="themeToggle" type="button">Dark mode</button>
+          <button class="ghost-btn">Export</button>
+          <button class="primary-btn" id="quickAdd">+ Add Entry</button>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="stack">
+          <div class="summary-grid">
+            <article class="metric income">
+              <div class="label">
+                <span>Income</span>
+                <div class="icon">↗</div>
+              </div>
+              <div class="value" id="incomeValue">$0</div>
+              <div class="trend up">+8.4% vs last month</div>
+            </article>
+
+            <article class="metric expense">
+              <div class="label">
+                <span>Expenses</span>
+                <div class="icon">↘</div>
+              </div>
+              <div class="value" id="expenseValue">$0</div>
+              <div class="trend down">-3.2% vs last month</div>
+            </article>
+
+            <article class="metric balance">
+              <div class="label">
+                <span>Balance</span>
+                <div class="icon">$</div>
+              </div>
+              <div class="value" id="balanceValue">$0</div>
+              <div class="trend up">Healthy reserve</div>
+            </article>
+
+            <article class="metric savings">
+              <div class="label">
+                <span>Savings</span>
+                <div class="icon">◎</div>
+              </div>
+              <div class="value" id="savingsValue">0%</div>
+              <div class="trend up">Budget efficiency</div>
+            </article>
+          </div>
+
+          <div class="content-row">
+            <div class="card">
+              <div class="section-head">
+                <h2>Spending overview</h2>
+                <div class="filter-wrap">
+                  <div class="filter">This month</div>
+                  <select id="categoryFilter" class="mini-select">
+                    <option value="All">All categories</option>
+                    <option>Housing</option>
+                    <option>Food</option>
+                    <option>Transport</option>
+                    <option>Shopping</option>
+                    <option>Health</option>
+                    <option>Salary</option>
+                    <option>Freelance</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="chart-box">
+                <div class="bars" id="chartBars"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="section-head">
+                <h2>Budget goals</h2>
+              </div>
+              <div class="budget-list" id="budgetList"></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <div class="card">
+            <div class="section-head">
+              <h2>Add transaction</h2>
+            </div>
+
+            <form id="transactionForm" class="form-grid">
+              <div class="toggle" aria-label="Transaction type">
+                <button type="button" class="active" data-type="expense">Expense</button>
+                <button type="button" data-type="income">Income</button>
+              </div>
+
+              <div class="field">
+                <label for="title">Title</label>
+                <input id="title" type="text" value="Groceries" required />
+              </div>
+
+              <div class="two-col">
+                <div class="field">
+                  <label for="amount">Amount</label>
+                  <input id="amount" type="number" min="0" step="0.01" value="120" required />
+                </div>
+
+                <div class="field">
+                  <label for="category">Category</label>
+                  <select id="category">
+                    <option>Housing</option>
+                    <option>Food</option>
+                    <option>Transport</option>
+                    <option>Shopping</option>
+                    <option>Health</option>
+                    <option>Salary</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="two-col">
+                <div class="field">
+                  <label for="date">Date</label>
+                  <input id="date" type="date" required />
+                </div>
+
+                <div class="field">
+                  <label for="tag">Tag</label>
+                  <input id="tag" type="text" value="Essentials" />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-btn" id="submitButton">Save transaction</button>
+                <button type="button" class="secondary-btn hidden" id="cancelEdit">Cancel</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="section-head">
+              <h2>Recent activity</h2>
+            </div>
+            <div class="transaction-list" id="transactionList"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

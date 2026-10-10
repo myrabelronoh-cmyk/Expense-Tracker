@@ -9,6 +9,7 @@ body {
   background-color: #f4f6f8;
   color: #333;
   padding: 20px;
+  list-style: 1.6;
 }
 
 
@@ -27,6 +28,7 @@ body {
   border-radius: 8px;
   margin-bottom: 20px;
 }
+
 
 .brand {
   display: flex;
@@ -81,7 +83,6 @@ body {
   flex-direction: column;
   gap: 20px;
 }
-
 
 .card, .metric {
   background: #fff;

@@ -1,19 +1,20 @@
 const STORAGE_KEY = 'expense-tracker-data-v1';
 const THEME_KEY = 'expense-tracker-theme';
+
 const defaultTransactions = [
-  { id: 1, type: 'expense', title: 'Rent', category: 'Housing', amount: 1450, date: '2026-10-01', tag: 'Monthly' },
-  { id: 2, type: 'expense', title: 'Groceries', category: 'Food', amount: 215, date: '2026-10-08', tag: 'Essentials' },
-  { id: 3, type: 'income', title: 'Monthly salary', category: 'Salary', amount: 4200, date: '2026-10-01', tag: 'Salary' },
-  { id: 4, type: 'expense', title: 'Fuel', category: 'Transport', amount: 90, date: '2026-10-12', tag: 'Travel' },
-  { id: 5, type: 'expense', title: 'Pharmacy', category: 'Health', amount: 68, date: '2026-10-15', tag: 'Care' },
-  { id: 6, type: 'income', title: 'Freelance work', category: 'Freelance', amount: 750, date: '2026-10-20', tag: 'Side income' }
+  { id: 1, type: 'expense', title: 'Rent', category: 'Housing', amount: 145000, date: '2026-10-01', tag: 'Monthly' },
+  { id: 2, type: 'expense', title: 'Groceries', category: 'Food', amount: 21500, date: '2026-10-08', tag: 'Essentials' },
+  { id: 3, type: 'income', title: 'Monthly salary', category: 'Salary', amount: 420000, date: '2026-10-01', tag: 'Salary' },
+  { id: 4, type: 'expense', title: 'Fuel', category: 'Transport', amount: 9000, date: '2026-10-12', tag: 'Travel' },
+  { id: 5, type: 'expense', title: 'Pharmacy', category: 'Health', amount: 6800, date: '2026-10-15', tag: 'Care' },
+  { id: 6, type: 'income', title: 'Freelance work', category: 'Freelance', amount: 75000, date: '2026-10-20', tag: 'Side income' }
 ];
 
 const budgetGoals = [
-  { name: 'Housing', amount: 1600, used: 1450 },
-  { name: 'Food', amount: 600, used: 215, warning: false },
-  { name: 'Transport', amount: 250, used: 90 },
-  { name: 'Shopping', amount: 400, used: 310, warning: true }
+  { name: 'Housing', amount: 160000, used: 145000 },
+  { name: 'Food', amount: 60000, used: 21500, warning: false },
+  { name: 'Transport', amount: 25000, used: 9000 },
+  { name: 'Shopping', amount: 40000, used: 31000, warning: true }
 ];
 
 let currentType = 'expense';
@@ -34,9 +35,9 @@ function saveTransactions() {
 }
 
 function formatCurrency(value) {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-KE', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'KES',
     maximumFractionDigits: 0
   }).format(value);
 }
@@ -100,10 +101,18 @@ function renderChart() {
 }
 
 function renderBudgets() {
+  const categoryTotals = transactions
+    .filter(item => item.type === 'expense')
+    .reduce((acc, item) => {
+      acc[item.category] = (acc[item.category] || 0) + Number(item.amount);
+      return acc;
+    }, {});
+
   const list = budgetGoals.map(goal => {
-    const percent = Math.min((goal.used / goal.amount) * 100, 100);
+    const used = categoryTotals[goal.name] || 0;
+    const percent = Math.min((used / goal.amount) * 100, 100);
     const className = goal.warning ? 'warning' : '';
-    const remaining = goal.amount - goal.used;
+    const remaining = goal.amount - used;
     return `
       <div class="budget-item ${className}">
         <div class="budget-head">
@@ -112,7 +121,7 @@ function renderBudgets() {
         </div>
         <div class="progress"><span style="width:${Math.min(percent, 100)}%"></span></div>
         <div class="budget-meta">
-          <span>${formatCurrency(goal.used)} used</span>
+          <span>${formatCurrency(used)} used</span>
           <span>${formatCurrency(Math.max(remaining, 0))} left</span>
         </div>
       </div>

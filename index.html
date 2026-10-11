@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#f3f7f5" />
+		<title>My Expense Tracker</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main id="app" class="app-shell">
+			<header class="page-header">
+				<div>
+					<p class="eyebrow">PERSONAL FINANCE</p>
+					<h1>My Expense Tracker</h1>
+					<p class="intro">Keep every expense clear, wherever you spend.</p>
+				</div>
+				<div class="total-panel">
+					<label for="home-currency">Total in</label>
+					<select id="home-currency" aria-label="Home currency"></select>
+					<strong id="total-amount">—</strong>
+				</div>
+			</header>
+
+			<section class="status-row" aria-live="polite">
+				<p id="rates-status" class="status status--loading">Loading live exchange rates…</p>
+				<button id="retry-rates" class="button button--quiet" type="button">Retry rates</button>
+			</section>
+
+			<div class="workspace-grid">
+				<section class="panel entry-panel" aria-labelledby="entry-heading">
+					<div class="panel-heading">
+						<p class="eyebrow">NEW ENTRY</p>
+						<h2 id="entry-heading">Add an expense</h2>
+					</div>
+					<form id="expense-form" class="expense-form">
+						<label class="field field--wide" for="description">
+							<span>Description</span>
+							<input id="description" name="description" type="text" placeholder="e.g. Lunch with the team" required />
+						</label>
+						<label class="field" for="amount">
+							<span>Amount</span>
+							<input id="amount" name="amount" type="number" min="0" step="0.01" placeholder="0.00" required />
+						</label>
+						<label class="field" for="currency">
+							<span>Paid in</span>
+							<select id="currency" name="currency"></select>
+						</label>
+						<label class="field field--wide" for="category">
+							<span>Category</span>
+							<select id="category" name="category"></select>
+						</label>
+						<button class="button button--primary field--wide" type="submit">Add expense</button>
+					</form>
+				</section>
+
+				<section class="panel activity-panel" aria-labelledby="activity-heading">
+					<div class="panel-heading panel-heading--split">
+						<div>
+							<p class="eyebrow">YOUR SPENDING</p>
+							<h2 id="activity-heading">Expenses</h2>
+						</div>
+						<label class="filter-field" for="filter-category">
+							<span>Category</span>
+							<select id="filter-category"></select>
+						</label>
+					</div>
+					<p id="filtered-label" class="filtered-label">Showing all expenses</p>
+					<p id="empty-state" class="empty-state">No expenses yet. Add your first expense to get started.</p>
+					<ul id="expense-list" class="expense-list" aria-live="polite"></ul>
+				</section>
+			</div>
+		</main>
+		<script type="module" src="src/main.js"></script>
+	</body>
+</html>

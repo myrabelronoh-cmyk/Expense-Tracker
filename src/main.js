@@ -8,7 +8,7 @@ import {
   setRatesState,
 } from './state.js';
 import { cacheElements, populateSelects, renderExpenses, renderRatesStatus } from './ui.js';
-import { EXPENSE_CATEGORIES } from './utils.js';
+import { EXPENSE_CATEGORIES } from './utilis.js';
 
 /** @type {import('./state.js').AppState} */
 let state = { ...initialState };

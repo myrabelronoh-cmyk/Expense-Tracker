@@ -1,4 +1,4 @@
-/** @typedef {import('./utils.js').Expense} Expense */
+/** @typedef {import('./utilis.js').Expense} Expense */
 
 /** @typedef {{ expenses: Expense[], homeCurrency: string, rates: Record<string, number>|null, ratesLoading: boolean, ratesError: string|null, filterCategory: string }} AppState */
 

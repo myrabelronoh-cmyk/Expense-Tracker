@@ -5,7 +5,7 @@ import {
   formatMoney,
   EXPENSE_CATEGORIES,
   SUPPORTED_CURRENCIES,
-} from './utils.js';
+} from './utilis.js';
 
 /**
  * @param {HTMLElement} root

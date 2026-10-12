@@ -13,6 +13,10 @@ That clearer view can help travelers:
 - Notice how exchange-rate movements affect the home-currency cost of a trip
 - Make more informed choices when working within a travel budget
 
+### Example
+
+If your home currency is USD and you record a meal costing KES 1,300, the app keeps the original KES amount visible and shows an approximate USD amount beside it using the latest rate it loaded. The running total updates in USD as well. The exact converted amount changes with exchange rates; in a browser check, KES 1,300 displayed as about $10.02.
+
 Currency conversion does not remove exchange-rate volatility, inflation, bank fees, or differences in local prices. The app supports better awareness of those costs; it cannot control them or replace official rates shown by a bank, card provider, or merchant.
 
 ## Features

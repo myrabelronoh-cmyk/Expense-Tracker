@@ -31,13 +31,13 @@ Currency conversion does not remove exchange-rate volatility, inflation, bank fe
 
 ## Run Locally
 
-The app uses browser ES modules, so serve the project from a local web server instead of opening the HTML file directly. With Python installed, run this from the project root:
+The app uses browser ES modules, so serve the project from a local web server instead of opening the HTML file directly. Run this from the project root:
 
 ```bash
-python3 -m http.server 8000
+https://myrabelronoh-cmyk.github.io/Expense-Tracker/?
 ```
 
-Then open <http://localhost:8000>.
+Then open 
 
 ## Tests
 
